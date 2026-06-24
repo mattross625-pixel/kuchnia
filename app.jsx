@@ -192,7 +192,7 @@ export default function App() {
       summary[key].amount = summary[key].amount + Number(item.amount);
     });
 
-    const rows = ["Wydanie produktów:"];
+    const rows = ["Wydanie produktów: TEST"];
 
     Object.keys(summary).forEach(function (key) {
       const item = summary[key];
