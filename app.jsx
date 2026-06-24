@@ -176,8 +176,26 @@ export default function App() {
   function emailOrder() {
     if (items.length === 0) return;
 
-    const rows = ["Wydanie produktów:"];
+    const summary = {};
+
     items.forEach(function (item) {
+      const key = item.product + "|" + item.unit;
+
+      if (!summary[key]) {
+        summary[key] = {
+          product: item.product,
+          unit: item.unit,
+          amount: 0
+        };
+      }
+
+      summary[key].amount = summary[key].amount + Number(item.amount);
+    });
+
+    const rows = ["Wydanie produktów:"];
+
+    Object.keys(summary).forEach(function (key) {
+      const item = summary[key];
       rows.push(item.product + " - " + item.amount + " " + item.unit);
     });
 
